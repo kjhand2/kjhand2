@@ -3,16 +3,16 @@ import dpkt
 import sys
 
 
-def main():
+def sanity_check():
     if (len(sys.argv) < 2):
         print "error: need argument"
         sys.exit(1)
 
     filename = sys.argv[1]
-    print "input filename: " + filename
-    print "fixme"
-    sys.exit(0)
+    return
 
 
 if __name__ == '__main__':
-    main()
+    sanity_check()
+
+print "everything is fine"
