@@ -3,3 +3,6 @@
 # telnet
 # smtp
 # pop3
+ftp
+ssh
+https
