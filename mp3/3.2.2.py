@@ -42,7 +42,7 @@ for ts, buf in pcap:
 	# print(tcp.flags & dpkt.tcp.TH_ACK)
 	# sys.exit(1)
 	# test for ACK-SYN
-	if (tcp.flags & dpkt.tcp.TH_ACK) != 0 and (tcp.flags & dpkt.tcp.TH_SYN) != 0:
+	if ((tcp.flags & dpkt.tcp.TH_ACK) != 0 and (tcp.flags & dpkt.tcp.TH_SYN) != 0):
 		# print ("made it to ack")
 		if ip.dst not in s_a:
 			s_a[ip.dst] = 1
@@ -52,7 +52,7 @@ for ts, buf in pcap:
 		if ip.dst not in s:
 			s[ip.dst] = 0
 			# test for SYN
-	elif (tcp.flags & dpkt.tcp.TH_SYN) != 0:
+	elif (tcp.flags == dpkt.tcp.TH_SYN): #!= 0:
 		# print ("made it to syn")
 		if ip.src not in s:
 			s[ip.src] = 1
@@ -61,6 +61,8 @@ for ts, buf in pcap:
 # add a zero if we find a syn before a ack-syn
 		if ip.src not in s_a:
 			s_a[ip.src] = 0
+
+
 
 # #run through list to find the IP address that works
 # x=0
