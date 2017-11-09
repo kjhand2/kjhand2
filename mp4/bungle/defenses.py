@@ -26,7 +26,15 @@ class XSSEncodeAngles(object):
     @staticmethod
     def filter(user_input):
         #TODO: complete this filter definition
-        return user_input	
+	filtered_input = []
+	for c in user_input:
+		if c == '<':
+			filtered_input.append("&lt")
+		elif c == '>':
+			filtered_input.append("&gt")
+		else:
+			filtered_input.append(c)
+        return filtered_input	
 
 ############################################################
 # CSRF Defenses
