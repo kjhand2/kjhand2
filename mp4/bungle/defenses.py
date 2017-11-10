@@ -1,4 +1,5 @@
 import re, os
+import random
 from bottle import FormsDict, HTTPError
 from hashlib import md5
 
@@ -62,7 +63,10 @@ class CSRFToken(object):
         token = request.get_cookie("csrf_token")
 
         #TODO: implement Token validation
-
+        random.seed()
+        if(token == 'none'):
+            token = random.getrandbits(16*8)
+        response.set_cookie("csrf_token", str(token))
         return token
     @staticmethod
     def formHTML(token):
