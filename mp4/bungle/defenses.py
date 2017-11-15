@@ -23,19 +23,12 @@ class XSSEncodeAngles(object):
     name = "Encode &lt; and &gt;"
     @staticmethod
     def init(response):
-        response.set_header("X-XSS-Protection", "0");
+        response.set_header("X-XSS-Protection", "0");           
     @staticmethod
     def filter(user_input):
-        #TODO: complete this filter definition
-	filtered_input = []
-	for c in user_input:
-		if c == '<':
-			filtered_input.append("&lt")
-		elif c == '>':
-			filtered_input.append("&gt")
-		else:
-			filtered_input.append(c)
-        return filtered_input	
+        user_input = user_input.replace("<", "&lt")
+        user_input = user_input.replace(">", "&gt")
+        return user_input  
 
 ############################################################
 # CSRF Defenses
