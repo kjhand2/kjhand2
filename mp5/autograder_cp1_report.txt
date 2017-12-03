@@ -1,0 +1,12 @@
+
+5.x n/n means that you got full points for your answer for part 5.x
+5.x 1/n means that you got partial points for your answer for part 5.x
+Refer to mp5 documentation to see the point of each 5.x part.
+        
+5.1.1.1.txt     0/3
+5.1.1.2.txt     0/1
+5.1.1.3.txt     0/1
+5.1.1.4.txt     0/1
+5.1.2.1.pickle  0/1 no newline found when trying to read stringnl
+5.1.3.1.txt     0/1
+5.1.4.txt       0/3
