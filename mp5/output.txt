@@ -1,0 +1,509 @@
+
+knockd.ko:     file format elf32-i386
+knockd.ko
+architecture: i386, flags 0x00000011:
+HAS_RELOC, HAS_SYMS
+start address 0x00000000
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .note.gnu.build-id 00000024  00000000  00000000  00000034  2**2
+                  CONTENTS, ALLOC, LOAD, READONLY, DATA
+  1 .text         00000024  00000000  00000000  00000060  2**4
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+  2 .init.text    0000004f  00000000  00000000  00000084  2**0
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+  3 .exit.text    0000001c  00000000  00000000  000000d3  2**0
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+  4 .rodata.str1.4 0000002c  00000000  00000000  000000f0  2**2
+                  CONTENTS, ALLOC, LOAD, READONLY, DATA
+  5 .rodata.str1.1 00000027  00000000  00000000  0000011c  2**0
+                  CONTENTS, ALLOC, LOAD, READONLY, DATA
+  6 .modinfo      000000cb  00000000  00000000  00000143  2**0
+                  CONTENTS, ALLOC, LOAD, READONLY, DATA
+  7 __mcount_loc  00000004  00000000  00000000  00000210  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, DATA
+  8 __versions    00000140  00000000  00000000  00000220  2**5
+                  CONTENTS, ALLOC, LOAD, READONLY, DATA
+  9 .data         00000000  00000000  00000000  00000360  2**2
+                  CONTENTS, ALLOC, LOAD, DATA
+ 10 .gnu.linkonce.this_module 0000017c  00000000  00000000  00000360  2**5
+                  CONTENTS, ALLOC, LOAD, RELOC, DATA, LINK_ONCE_DISCARD
+ 11 .bss          0000001c  00000000  00000000  000004dc  2**2
+                  ALLOC
+ 12 .comment      00000056  00000000  00000000  000004dc  2**0
+                  CONTENTS, READONLY
+ 13 .note.GNU-stack 00000000  00000000  00000000  00000532  2**0
+                  CONTENTS, READONLY
+SYMBOL TABLE:
+00000000 l    d  .note.gnu.build-id	00000000 .note.gnu.build-id
+00000000 l    d  .text	00000000 .text
+00000000 l    d  .init.text	00000000 .init.text
+00000000 l    d  .exit.text	00000000 .exit.text
+00000000 l    d  .rodata.str1.4	00000000 .rodata.str1.4
+00000000 l    d  .rodata.str1.1	00000000 .rodata.str1.1
+00000000 l    d  .modinfo	00000000 .modinfo
+00000000 l    d  __mcount_loc	00000000 __mcount_loc
+00000000 l    d  __versions	00000000 __versions
+00000000 l    d  .data	00000000 .data
+00000000 l    d  .gnu.linkonce.this_module	00000000 .gnu.linkonce.this_module
+00000000 l    d  .bss	00000000 .bss
+00000000 l    d  .comment	00000000 .comment
+00000000 l    d  .note.GNU-stack	00000000 .note.GNU-stack
+00000000 l    df *ABS*	00000000 knockd.c
+00000000 l     F .text	00000023 knockd_filter_function
+00000000 l     F .init.text	0000004f knockd_init
+00000000 l     O .bss	0000001c knockd_netfilter_hook
+00000000 l     F .exit.text	0000001c knockd_exit
+00000000 l     O .modinfo	00000043 __mod_description15
+00000043 l     O .modinfo	0000000c __mod_license14
+0000004f l     O .modinfo	00000012 __mod_author13
+00000000 l    df *ABS*	00000000 knockd.mod.c
+00000061 l     O .modinfo	00000023 __mod_srcversion33
+00000084 l     O .modinfo	00000009 __module_depends
+00000000 l     O __versions	00000140 ____versions
+0000008d l     O .modinfo	0000003e __mod_vermagic5
+00000000 g     O .gnu.linkonce.this_module	0000017c __this_module
+00000000 g     F .exit.text	0000001c cleanup_module
+00000000         *UND*	00000000 nf_unregister_hook
+00000000 g     F .init.text	0000004f init_module
+00000000         *UND*	00000000 mcount
+00000000         *UND*	00000000 printk
+00000000         *UND*	00000000 nf_register_hook
+
+
+Contents of section .note.gnu.build-id:
+ 0000 04000000 14000000 03000000 474e5500  ............GNU.
+ 0010 735e5b69 2c5793ed 0afc5334 15f1f46f  s^[i,W....S4...o
+ 0020 b47b405c                             .{@\            
+Contents of section .text:
+ 0000 5589e5e8 fcffffff 8b829c00 00005d0f  U.............].
+ 0010 b61083e2 0f66817c 900201cd 0f95c00f  .....f.|........
+ 0020 b6c0c300                             ....            
+Contents of section .init.text:
+ 0000 5589e550 c7042400 000000e8 fcffffff  U..P..$.........
+ 0010 b8000000 00c70508 00000000 000000c7  ................
+ 0020 05140000 00000000 00c60510 00000002  ................
+ 0030 c7051800 00000000 0080e8fc ffffffc7  ................
+ 0040 04240000 0000e8fc ffffff31 c0c9c3    .$.........1... 
+Contents of section .exit.text:
+ 0000 55b80000 000089e5 52e8fcff ffffc704  U.......R.......
+ 0010 24160000 00e8fcff ffffc9c3           $...........    
+Contents of section .rodata.str1.4:
+ 0000 3c363e6b 6e6f636b 643a2069 6e697469  <6>knockd: initi
+ 0010 6e67206e 65746669 6c746572 20686f6f  ng netfilter hoo
+ 0020 6b206675 6e637469 6f6e0a00           k function..    
+Contents of section .rodata.str1.1:
+ 0000 3c363e6b 6e6f636b 643a2064 6f6e6520  <6>knockd: done 
+ 0010 696e6974 0a003c36 3e6b6e6f 636b643a  init..<6>knockd:
+ 0020 20657869 740a00                       exit..         
+Contents of section .modinfo:
+ 0000 64657363 72697074 696f6e3d 41206e65  description=A ne
+ 0010 7466696c 74657220 6b65726e 656c206d  tfilter kernel m
+ 0020 6f64756c 65207468 61742067 75617264  odule that guard
+ 0030 73206163 63657373 20746f20 6120706f  s access to a po
+ 0040 7274006c 6963656e 73653d4d 49540061  rt.license=MIT.a
+ 0050 7574686f 723d5068 756f6e67 2043616f  uthor=Phuong Cao
+ 0060 00737263 76657273 696f6e3d 35393432  .srcversion=5942
+ 0070 32343930 42354133 38343145 37393038  2490B5A3841E7908
+ 0080 45433200 64657065 6e64733d 00766572  EC2.depends=.ver
+ 0090 6d616769 633d332e 322e302d 35352d67  magic=3.2.0-55-g
+ 00a0 656e6572 69632d70 61652053 4d50206d  eneric-pae SMP m
+ 00b0 6f645f75 6e6c6f61 64206d6f 64766572  od_unload modver
+ 00c0 73696f6e 73203638 362000             sions 686 .     
+Contents of section __mcount_loc:
+ 0000 03000000                             ....            
+Contents of section __versions:
+ 0000 db1169c8 6d6f6475 6c655f6c 61796f75  ..i.module_layou
+ 0010 74000000 00000000 00000000 00000000  t...............
+ 0020 00000000 00000000 00000000 00000000  ................
+ 0030 00000000 00000000 00000000 00000000  ................
+ 0040 6baad701 6e665f75 6e726567 69737465  k...nf_unregiste
+ 0050 725f686f 6f6b0000 00000000 00000000  r_hook..........
+ 0060 00000000 00000000 00000000 00000000  ................
+ 0070 00000000 00000000 00000000 00000000  ................
+ 0080 a09f8a7e 6e665f72 65676973 7465725f  ...~nf_register_
+ 0090 686f6f6b 00000000 00000000 00000000  hook............
+ 00a0 00000000 00000000 00000000 00000000  ................
+ 00b0 00000000 00000000 00000000 00000000  ................
+ 00c0 b8deee50 7072696e 746b0000 00000000  ...Pprintk......
+ 00d0 00000000 00000000 00000000 00000000  ................
+ 00e0 00000000 00000000 00000000 00000000  ................
+ 00f0 00000000 00000000 00000000 00000000  ................
+ 0100 9a0f39b4 6d636f75 6e740000 00000000  ..9.mcount......
+ 0110 00000000 00000000 00000000 00000000  ................
+ 0120 00000000 00000000 00000000 00000000  ................
+ 0130 00000000 00000000 00000000 00000000  ................
+Contents of section .gnu.linkonce.this_module:
+ 0000 00000000 00000000 00000000 6b6e6f63  ............knoc
+ 0010 6b640000 00000000 00000000 00000000  kd..............
+ 0020 00000000 00000000 00000000 00000000  ................
+ 0030 00000000 00000000 00000000 00000000  ................
+ 0040 00000000 00000000 00000000 00000000  ................
+ 0050 00000000 00000000 00000000 00000000  ................
+ 0060 00000000 00000000 00000000 00000000  ................
+ 0070 00000000 00000000 00000000 00000000  ................
+ 0080 00000000 00000000 00000000 00000000  ................
+ 0090 00000000 00000000 00000000 00000000  ................
+ 00a0 00000000 00000000 00000000 00000000  ................
+ 00b0 00000000 00000000 00000000 00000000  ................
+ 00c0 00000000 00000000 00000000 00000000  ................
+ 00d0 00000000 00000000 00000000 00000000  ................
+ 00e0 00000000 00000000 00000000 00000000  ................
+ 00f0 00000000 00000000 00000000 00000000  ................
+ 0100 00000000 00000000 00000000 00000000  ................
+ 0110 00000000 00000000 00000000 00000000  ................
+ 0120 00000000 00000000 00000000 00000000  ................
+ 0130 00000000 00000000 00000000 00000000  ................
+ 0140 00000000 00000000 00000000 00000000  ................
+ 0150 00000000 00000000 00000000 00000000  ................
+ 0160 00000000 00000000 00000000 00000000  ................
+ 0170 00000000 00000000 00000000           ............    
+Contents of section .comment:
+ 0000 00474343 3a202855 62756e74 752f4c69  .GCC: (Ubuntu/Li
+ 0010 6e61726f 20342e36 2e332d31 7562756e  naro 4.6.3-1ubun
+ 0020 74753529 20342e36 2e330000 4743433a  tu5) 4.6.3..GCC:
+ 0030 20285562 756e7475 2f4c696e 61726f20   (Ubuntu/Linaro 
+ 0040 342e362e 332d3175 62756e74 75352920  4.6.3-1ubuntu5) 
+ 0050 342e362e 3300                        4.6.3.          
+
+Disassembly of section .note.gnu.build-id:
+
+00000000 <.note.gnu.build-id>:
+   0:	04 00                	add    $0x0,%al
+   2:	00 00                	add    %al,(%eax)
+   4:	14 00                	adc    $0x0,%al
+   6:	00 00                	add    %al,(%eax)
+   8:	03 00                	add    (%eax),%eax
+   a:	00 00                	add    %al,(%eax)
+   c:	47                   	inc    %edi
+   d:	4e                   	dec    %esi
+   e:	55                   	push   %ebp
+   f:	00 73 5e             	add    %dh,0x5e(%ebx)
+  12:	5b                   	pop    %ebx
+  13:	69 2c 57 93 ed 0a fc 	imul   $0xfc0aed93,(%edi,%edx,2),%ebp
+  1a:	53                   	push   %ebx
+  1b:	34 15                	xor    $0x15,%al
+  1d:	f1                   	icebp  
+  1e:	f4                   	hlt    
+  1f:	6f                   	outsl  %ds:(%esi),(%dx)
+  20:	b4 7b                	mov    $0x7b,%ah
+  22:	40                   	inc    %eax
+  23:	5c                   	pop    %esp
+
+Disassembly of section .text:
+
+00000000 <knockd_filter_function>:
+knockd_filter_function():
+   0:	55                   	push   %ebp
+   1:	89 e5                	mov    %esp,%ebp
+   3:	e8 fc ff ff ff       	call   4 <knockd_filter_function+0x4>
+			4: R_386_PC32	mcount
+   8:	8b 82 9c 00 00 00    	mov    0x9c(%edx),%eax
+   e:	5d                   	pop    %ebp
+   f:	0f b6 10             	movzbl (%eax),%edx
+  12:	83 e2 0f             	and    $0xf,%edx
+  15:	66 81 7c 90 02 01 cd 	cmpw   $0xcd01,0x2(%eax,%edx,4)
+  1c:	0f 95 c0             	setne  %al
+  1f:	0f b6 c0             	movzbl %al,%eax
+  22:	c3                   	ret    
+	...
+
+Disassembly of section .init.text:
+
+00000000 <init_module>:
+init_module():
+   0:	55                   	push   %ebp
+   1:	89 e5                	mov    %esp,%ebp
+   3:	50                   	push   %eax
+   4:	c7 04 24 00 00 00 00 	movl   $0x0,(%esp)
+			7: R_386_32	.rodata.str1.4
+   b:	e8 fc ff ff ff       	call   c <init_module+0xc>
+			c: R_386_PC32	printk
+  10:	b8 00 00 00 00       	mov    $0x0,%eax
+			11: R_386_32	.bss
+  15:	c7 05 08 00 00 00 00 	movl   $0x0,0x8
+  1c:	00 00 00 
+			17: R_386_32	.bss
+			1b: R_386_32	.text
+  1f:	c7 05 14 00 00 00 00 	movl   $0x0,0x14
+  26:	00 00 00 
+			21: R_386_32	.bss
+  29:	c6 05 10 00 00 00 02 	movb   $0x2,0x10
+			2b: R_386_32	.bss
+  30:	c7 05 18 00 00 00 00 	movl   $0x80000000,0x18
+  37:	00 00 80 
+			32: R_386_32	.bss
+  3a:	e8 fc ff ff ff       	call   3b <init_module+0x3b>
+			3b: R_386_PC32	nf_register_hook
+  3f:	c7 04 24 00 00 00 00 	movl   $0x0,(%esp)
+			42: R_386_32	.rodata.str1.1
+  46:	e8 fc ff ff ff       	call   47 <init_module+0x47>
+			47: R_386_PC32	printk
+  4b:	31 c0                	xor    %eax,%eax
+  4d:	c9                   	leave  
+  4e:	c3                   	ret    
+
+Disassembly of section .exit.text:
+
+00000000 <cleanup_module>:
+cleanup_module():
+   0:	55                   	push   %ebp
+   1:	b8 00 00 00 00       	mov    $0x0,%eax
+			2: R_386_32	.bss
+   6:	89 e5                	mov    %esp,%ebp
+   8:	52                   	push   %edx
+   9:	e8 fc ff ff ff       	call   a <cleanup_module+0xa>
+			a: R_386_PC32	nf_unregister_hook
+   e:	c7 04 24 16 00 00 00 	movl   $0x16,(%esp)
+			11: R_386_32	.rodata.str1.1
+  15:	e8 fc ff ff ff       	call   16 <cleanup_module+0x16>
+			16: R_386_PC32	printk
+  1a:	c9                   	leave  
+  1b:	c3                   	ret    
+
+Disassembly of section .rodata.str1.4:
+
+00000000 <.rodata.str1.4>:
+   0:	3c 36                	cmp    $0x36,%al
+   2:	3e 6b 6e 6f 63       	imul   $0x63,%ds:0x6f(%esi),%ebp
+   7:	6b 64 3a 20 69       	imul   $0x69,0x20(%edx,%edi,1),%esp
+   c:	6e                   	outsb  %ds:(%esi),(%dx)
+   d:	69 74 69 6e 67 20 6e 	imul   $0x656e2067,0x6e(%ecx,%ebp,2),%esi
+  14:	65 
+  15:	74 66                	je     7d <__mod_srcversion33+0x1c>
+  17:	69 6c 74 65 72 20 68 	imul   $0x6f682072,0x65(%esp,%esi,2),%ebp
+  1e:	6f 
+  1f:	6f                   	outsl  %ds:(%esi),(%dx)
+  20:	6b 20 66             	imul   $0x66,(%eax),%esp
+  23:	75 6e                	jne    93 <__mod_vermagic5+0x6>
+  25:	63 74 69 6f          	arpl   %si,0x6f(%ecx,%ebp,2)
+  29:	6e                   	outsb  %ds:(%esi),(%dx)
+  2a:	0a 00                	or     (%eax),%al
+
+Disassembly of section .rodata.str1.1:
+
+00000000 <.rodata.str1.1>:
+   0:	3c 36                	cmp    $0x36,%al
+   2:	3e 6b 6e 6f 63       	imul   $0x63,%ds:0x6f(%esi),%ebp
+   7:	6b 64 3a 20 64       	imul   $0x64,0x20(%edx,%edi,1),%esp
+   c:	6f                   	outsl  %ds:(%esi),(%dx)
+   d:	6e                   	outsb  %ds:(%esi),(%dx)
+   e:	65 20 69 6e          	and    %ch,%gs:0x6e(%ecx)
+  12:	69 74 0a 00 3c 36 3e 	imul   $0x6b3e363c,0x0(%edx,%ecx,1),%esi
+  19:	6b 
+  1a:	6e                   	outsb  %ds:(%esi),(%dx)
+  1b:	6f                   	outsl  %ds:(%esi),(%dx)
+  1c:	63 6b 64             	arpl   %bp,0x64(%ebx)
+  1f:	3a 20                	cmp    (%eax),%ah
+  21:	65                   	gs
+  22:	78 69                	js     8d <__mod_vermagic5>
+  24:	74 0a                	je     30 <knockd_filter_function+0x30>
+	...
+
+Disassembly of section .modinfo:
+
+00000000 <__mod_description15>:
+   0:	64                   	fs
+   1:	65                   	gs
+   2:	73 63                	jae    67 <__mod_srcversion33+0x6>
+   4:	72 69                	jb     6f <__mod_srcversion33+0xe>
+   6:	70 74                	jo     7c <__mod_srcversion33+0x1b>
+   8:	69 6f 6e 3d 41 20 6e 	imul   $0x6e20413d,0x6e(%edi),%ebp
+   f:	65                   	gs
+  10:	74 66                	je     78 <__mod_srcversion33+0x17>
+  12:	69 6c 74 65 72 20 6b 	imul   $0x656b2072,0x65(%esp,%esi,2),%ebp
+  19:	65 
+  1a:	72 6e                	jb     8a <__module_depends+0x6>
+  1c:	65                   	gs
+  1d:	6c                   	insb   (%dx),%es:(%edi)
+  1e:	20 6d 6f             	and    %ch,0x6f(%ebp)
+  21:	64                   	fs
+  22:	75 6c                	jne    90 <__mod_vermagic5+0x3>
+  24:	65 20 74 68 61       	and    %dh,%gs:0x61(%eax,%ebp,2)
+  29:	74 20                	je     4b <__mod_license14+0x8>
+  2b:	67 75 61             	addr16 jne 8f <__mod_vermagic5+0x2>
+  2e:	72 64                	jb     94 <__mod_vermagic5+0x7>
+  30:	73 20                	jae    52 <__mod_author13+0x3>
+  32:	61                   	popa   
+  33:	63 63 65             	arpl   %sp,0x65(%ebx)
+  36:	73 73                	jae    ab <__mod_vermagic5+0x1e>
+  38:	20 74 6f 20          	and    %dh,0x20(%edi,%ebp,2)
+  3c:	61                   	popa   
+  3d:	20 70 6f             	and    %dh,0x6f(%eax)
+  40:	72 74                	jb     b6 <__mod_vermagic5+0x29>
+	...
+
+00000043 <__mod_license14>:
+  43:	6c                   	insb   (%dx),%es:(%edi)
+  44:	69 63 65 6e 73 65 3d 	imul   $0x3d65736e,0x65(%ebx),%esp
+  4b:	4d                   	dec    %ebp
+  4c:	49                   	dec    %ecx
+  4d:	54                   	push   %esp
+	...
+
+0000004f <__mod_author13>:
+  4f:	61                   	popa   
+  50:	75 74                	jne    c6 <__mod_vermagic5+0x39>
+  52:	68 6f 72 3d 50       	push   $0x503d726f
+  57:	68 75 6f 6e 67       	push   $0x676e6f75
+  5c:	20 43 61             	and    %al,0x61(%ebx)
+  5f:	6f                   	outsl  %ds:(%esi),(%dx)
+	...
+
+00000061 <__mod_srcversion33>:
+  61:	73 72                	jae    d5 <__mod_vermagic5+0x48>
+  63:	63 76 65             	arpl   %si,0x65(%esi)
+  66:	72 73                	jb     db <__mod_vermagic5+0x4e>
+  68:	69 6f 6e 3d 35 39 34 	imul   $0x3439353d,0x6e(%edi),%ebp
+  6f:	32 32                	xor    (%edx),%dh
+  71:	34 39                	xor    $0x39,%al
+  73:	30 42 35             	xor    %al,0x35(%edx)
+  76:	41                   	inc    %ecx
+  77:	33 38                	xor    (%eax),%edi
+  79:	34 31                	xor    $0x31,%al
+  7b:	45                   	inc    %ebp
+  7c:	37                   	aaa    
+  7d:	39 30                	cmp    %esi,(%eax)
+  7f:	38 45 43             	cmp    %al,0x43(%ebp)
+  82:	32 00                	xor    (%eax),%al
+
+00000084 <__module_depends>:
+  84:	64                   	fs
+  85:	65                   	gs
+  86:	70 65                	jo     ed <__mod_vermagic5+0x60>
+  88:	6e                   	outsb  %ds:(%esi),(%dx)
+  89:	64                   	fs
+  8a:	73 3d                	jae    c9 <__mod_vermagic5+0x3c>
+	...
+
+0000008d <__mod_vermagic5>:
+  8d:	76 65                	jbe    f4 <__mod_vermagic5+0x67>
+  8f:	72 6d                	jb     fe <__mod_vermagic5+0x71>
+  91:	61                   	popa   
+  92:	67 69 63 3d 33 2e 32 	imul   $0x2e322e33,0x3d(%bp,%di),%esp
+  99:	2e 
+  9a:	30 2d 35 35 2d 67    	xor    %ch,0x672d3535
+  a0:	65 6e                	outsb  %gs:(%esi),(%dx)
+  a2:	65                   	gs
+  a3:	72 69                	jb     10e <__mod_vermagic5+0x81>
+  a5:	63 2d 70 61 65 20    	arpl   %bp,0x20656170
+  ab:	53                   	push   %ebx
+  ac:	4d                   	dec    %ebp
+  ad:	50                   	push   %eax
+  ae:	20 6d 6f             	and    %ch,0x6f(%ebp)
+  b1:	64                   	fs
+  b2:	5f                   	pop    %edi
+  b3:	75 6e                	jne    123 <__mod_vermagic5+0x96>
+  b5:	6c                   	insb   (%dx),%es:(%edi)
+  b6:	6f                   	outsl  %ds:(%esi),(%dx)
+  b7:	61                   	popa   
+  b8:	64 20 6d 6f          	and    %ch,%fs:0x6f(%ebp)
+  bc:	64                   	fs
+  bd:	76 65                	jbe    124 <__mod_vermagic5+0x97>
+  bf:	72 73                	jb     134 <__mod_vermagic5+0xa7>
+  c1:	69 6f 6e 73 20 36 38 	imul   $0x38362073,0x6e(%edi),%ebp
+  c8:	36 20 00             	and    %al,%ss:(%eax)
+
+Disassembly of section __mcount_loc:
+
+00000000 <__mcount_loc>:
+   0:	03 00                	add    (%eax),%eax
+			0: R_386_32	.text
+	...
+
+Disassembly of section __versions:
+
+00000000 <____versions>:
+   0:	db 11                	fistl  (%ecx)
+   2:	69 c8 6d 6f 64 75    	imul   $0x75646f6d,%eax,%ecx
+   8:	6c                   	insb   (%dx),%es:(%edi)
+   9:	65                   	gs
+   a:	5f                   	pop    %edi
+   b:	6c                   	insb   (%dx),%es:(%edi)
+   c:	61                   	popa   
+   d:	79 6f                	jns    7e <____versions+0x7e>
+   f:	75 74                	jne    85 <____versions+0x85>
+	...
+  3d:	00 00                	add    %al,(%eax)
+  3f:	00 6b aa             	add    %ch,-0x56(%ebx)
+  42:	d7                   	xlat   %ds:(%ebx)
+  43:	01 6e 66             	add    %ebp,0x66(%esi)
+  46:	5f                   	pop    %edi
+  47:	75 6e                	jne    b7 <____versions+0xb7>
+  49:	72 65                	jb     b0 <____versions+0xb0>
+  4b:	67 69 73 74 65 72 5f 	imul   $0x685f7265,0x74(%bp,%di),%esi
+  52:	68 
+  53:	6f                   	outsl  %ds:(%esi),(%dx)
+  54:	6f                   	outsl  %ds:(%esi),(%dx)
+  55:	6b 00 00             	imul   $0x0,(%eax),%eax
+	...
+  80:	a0 9f 8a 7e 6e       	mov    0x6e7e8a9f,%al
+  85:	66 5f                	pop    %di
+  87:	72 65                	jb     ee <____versions+0xee>
+  89:	67 69 73 74 65 72 5f 	imul   $0x685f7265,0x74(%bp,%di),%esi
+  90:	68 
+  91:	6f                   	outsl  %ds:(%esi),(%dx)
+  92:	6f                   	outsl  %ds:(%esi),(%dx)
+  93:	6b 00 00             	imul   $0x0,(%eax),%eax
+	...
+  be:	00 00                	add    %al,(%eax)
+  c0:	b8 de ee 50 70       	mov    $0x7050eede,%eax
+  c5:	72 69                	jb     130 <____versions+0x130>
+  c7:	6e                   	outsb  %ds:(%esi),(%dx)
+  c8:	74 6b                	je     135 <____versions+0x135>
+	...
+  fe:	00 00                	add    %al,(%eax)
+ 100:	9a 0f 39 b4 6d 63 6f 	lcall  $0x6f63,$0x6db4390f
+ 107:	75 6e                	jne    177 <__mod_vermagic5+0xea>
+ 109:	74 00                	je     10b <____versions+0x10b>
+	...
+
+Disassembly of section .gnu.linkonce.this_module:
+
+00000000 <__this_module>:
+	...
+   c:	6b 6e 6f 63          	imul   $0x63,0x6f(%esi),%ebp
+  10:	6b 64 00 00 00       	imul   $0x0,0x0(%eax,%eax,1),%esp
+	...
+			d4: R_386_32	init_module
+			174: R_386_32	cleanup_module
+
+Disassembly of section .bss:
+
+00000000 <knockd_netfilter_hook>:
+	...
+
+Disassembly of section .comment:
+
+00000000 <.comment>:
+   0:	00 47 43             	add    %al,0x43(%edi)
+   3:	43                   	inc    %ebx
+   4:	3a 20                	cmp    (%eax),%ah
+   6:	28 55 62             	sub    %dl,0x62(%ebp)
+   9:	75 6e                	jne    79 <__mod_srcversion33+0x18>
+   b:	74 75                	je     82 <__mod_srcversion33+0x21>
+   d:	2f                   	das    
+   e:	4c                   	dec    %esp
+   f:	69 6e 61 72 6f 20 34 	imul   $0x34206f72,0x61(%esi),%ebp
+  16:	2e 36 2e 33 2d 31 75 	cs ss xor %cs:%ss:0x75627531,%ebp
+  1d:	62 75 
+  1f:	6e                   	outsb  %ds:(%esi),(%dx)
+  20:	74 75                	je     97 <__mod_vermagic5+0xa>
+  22:	35 29 20 34 2e       	xor    $0x2e342029,%eax
+  27:	36 2e 33 00          	ss xor %cs:%ss:(%eax),%eax
+  2b:	00 47 43             	add    %al,0x43(%edi)
+  2e:	43                   	inc    %ebx
+  2f:	3a 20                	cmp    (%eax),%ah
+  31:	28 55 62             	sub    %dl,0x62(%ebp)
+  34:	75 6e                	jne    a4 <__mod_vermagic5+0x17>
+  36:	74 75                	je     ad <__mod_vermagic5+0x20>
+  38:	2f                   	das    
+  39:	4c                   	dec    %esp
+  3a:	69 6e 61 72 6f 20 34 	imul   $0x34206f72,0x61(%esi),%ebp
+  41:	2e 36 2e 33 2d 31 75 	cs ss xor %cs:%ss:0x75627531,%ebp
+  48:	62 75 
+  4a:	6e                   	outsb  %ds:(%esi),(%dx)
+  4b:	74 75                	je     c2 <__mod_vermagic5+0x35>
+  4d:	35 29 20 34 2e       	xor    $0x2e342029,%eax
+  52:	36 2e 33 00          	ss xor %cs:%ss:(%eax),%eax
